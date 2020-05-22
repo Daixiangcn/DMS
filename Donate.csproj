@@ -299,7 +299,6 @@
     <Content Include="layuiadmin\tpl\system\说明.txt" />
     <Content Include="layuiadmin\tpl\说明.txt" />
     <Content Include="login.aspx" />
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Edit.aspx.cs">
@@ -444,12 +443,6 @@
       <DependentUpon>DonateModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
