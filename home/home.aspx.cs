@@ -18,6 +18,7 @@ namespace Donate.home
                 Response.Redirect("/login.aspx");
             }
             int role = Convert.ToInt32(Session["role"]);
+            dateLabel.Text = DateTime.Now.ToString();
             var query = from d in (from d in db.donation select new { d.money, Dummy = "x" })
                         group d by new { d.Dummy } into don
                         select new

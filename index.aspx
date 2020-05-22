@@ -98,7 +98,7 @@
                             <asp:Repeater ID="menuRepeater" runat="server" OnItemDataBound="menuRepeater_ItemDataBound">
                                 <ItemTemplate>
                                     <li data-name='<%# Eval("icon") %>' class="layui-nav-item">
-                                        <a href='<%# Eval("url") %>' lay-tips='<%# Eval("name") %>' lay-direction="2">
+                                        <a href="javascript:;" lay-href='<%# Eval("url") %>' lay-tips='<%# Eval("name") %>' lay-direction="2">
                                             <i class='layui-icon layui-icon-<%# Eval("icon") %> '></i>
                                             <cite><%# Eval("name") %> </cite>
                                         </a>
