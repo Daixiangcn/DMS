@@ -70,13 +70,17 @@ namespace Donate
     }).FirstOrDefault().self_id)
                         select
                             menu;
-            //不为空就绑定数据
-            if (!query.Any())
-            {
-                functionRepeater2.DataSource = query.ToList();
-                functionRepeater2.DataBind();
-            }
+            //绑定数据
+            functionRepeater2.DataSource = query.ToList();
+            functionRepeater2.DataBind();
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("/login.aspx");
         }
     }
 }

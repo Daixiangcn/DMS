@@ -67,7 +67,8 @@
                                 <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                                 <dd><a lay-href="set/user/password.html">修改密码</a></dd>
                                 <hr>
-                                <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+                                <dd style="text-align: center; cursor: ">
+                                    <asp:Button ID="Button1" runat="server" Text="退出" BorderStyle="None" BackColor="White" OnClick="Button1_Click" /></dd>
                             </dl>
                         </li>
 
@@ -98,26 +99,32 @@
                             <asp:Repeater ID="menuRepeater" runat="server" OnItemDataBound="menuRepeater_ItemDataBound">
                                 <ItemTemplate>
                                     <li data-name='<%# Eval("icon") %>' class="layui-nav-item">
-                                        <a href="javascript:;" lay-href='<%# Eval("url") %>' lay-tips='<%# Eval("name") %>' lay-direction="2">
+
+                                        <a href="javascript:;" <%# "javascript:;".Equals(Eval("url"))?"":("lay-href="+Eval("url")) %> lay-tips='<%# Eval("name") %>' lay-direction="2">
+
                                             <i class='layui-icon layui-icon-<%# Eval("icon") %> '></i>
                                             <cite><%# Eval("name") %> </cite>
                                         </a>
+                                        <%# "javascript:;".Equals(Eval("url"))?"<dl class='layui-nav-child'>":"" %>
                                         <asp:Repeater ID="functionRepeater" runat="server" OnItemDataBound="menuRepeater_ItemDataBound2">
                                             <ItemTemplate>
-                                                <dl class="layui-nav-child">
-                                                    <dd><a lay-href='<%# Eval("url") %>'><%# Eval("name") %></a>
+                                                 
+                                                    <dd class='layui-nav-itemed'><a <%# "javascript:;".Equals(Eval("url"))?"href='javascript:;'":"lay-href="+Eval("url") %>><%# Eval("name")+"</a>" %>
+                                                        <%# "javascript:;".Equals(Eval("url"))?"<dl class='layui-nav-child'>":"" %>
                                                         <asp:Repeater ID="functionRepeater2" runat="server">
                                                             <ItemTemplate>
-                                                                <dl class="layui-nav-child">
-                                                                    <dd><a lay-href='<%# Eval("url") %>'><%# Eval("name") %></a>
-                                                                    </dd>
-                                                                </dl>
+
+                                                                <dd><a lay-href='<%# Eval("url") %>'><%# Eval("name") %></a>
+                                                                </dd>
+                                                    
                                                             </ItemTemplate>
                                                         </asp:Repeater>
+                                                        <%# "javascript:;".Equals(Eval("url"))?"</dl>":"" %>   
                                                     </dd>
-                                                </dl>
+                                              
                                             </ItemTemplate>
                                         </asp:Repeater>
+                                         <%# "javascript:;".Equals(Eval("url"))?"</dl>":"" %>   
                                     </li>
                                 </ItemTemplate>
                             </asp:Repeater>
