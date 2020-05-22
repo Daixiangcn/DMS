@@ -12,18 +12,15 @@ namespace Donate
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class menu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public role()
-        {
-            this.user = new HashSet<user>();
-        }
-    
         public int id { get; set; }
+        public string self_id { get; set; }
+        public string parent_id { get; set; }
         public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user { get; set; }
+        public Nullable<int> role { get; set; }
+        public Nullable<int> status { get; set; }
+        public string url { get; set; }
+        public string icon { get; set; }
     }
 }

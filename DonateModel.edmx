@@ -4,18 +4,39 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DonatesysModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DonateModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="donation">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="time" Type="date" />
-          <Property Name="object" Type="text" />
+          <Property Name="object" Type="int" />
           <Property Name="money" Type="decimal" Precision="15" Scale="2" />
           <Property Name="donor" Type="varchar" MaxLength="255" />
           <Property Name="message" Type="text" />
-          <Property Name="type" Type="uint" Nullable="false" />
+          <Property Name="type" Type="int" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="self_id" Type="varchar" MaxLength="25" />
+          <Property Name="parent_id" Type="varchar" MaxLength="25" />
+          <Property Name="name" Type="varchar" MaxLength="25" />
+          <Property Name="role" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
+          <Property Name="icon" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -23,6 +44,14 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -40,27 +69,121 @@
           <Property Name="password" Type="varchar" MaxLength="100" />
           <Property Name="lastIp" Type="varchar" MaxLength="32" />
         </EntityType>
-        <EntityContainer Name="DonatesysModelStoreContainer">
+        <Association Name="objFK">
+          <End Role="object" Type="Self.object" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="object" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rolFK">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="typeFK">
+          <End Role="type" Type="Self.type" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DonateModelStoreContainer">
           <EntitySet Name="donation" EntityType="Self.donation" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="object" EntityType="Self.object" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="type" EntityType="Self.type" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="donate_sys" store:Type="Tables" />
+          <AssociationSet Name="objFK" Association="Self.objFK">
+            <End Role="object" EntitySet="object" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="rolFK" Association="Self.rolFK">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="typeFK" Association="Self.typeFK">
+            <End Role="type" EntitySet="type" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DonatesysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DonateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DonateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="donation" EntityType="DonateModel.donation" />
+          <EntitySet Name="menu" EntityType="DonateModel.menu" />
+          <EntitySet Name="object" EntityType="DonateModel.object" />
+          <EntitySet Name="role" EntityType="DonateModel.role" />
+          <EntitySet Name="type" EntityType="DonateModel.type" />
+          <EntitySet Name="user" EntityType="DonateModel.user" />
+          <AssociationSet Name="objFK" Association="DonateModel.objFK">
+            <End Role="object" EntitySet="object" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="typeFK" Association="DonateModel.typeFK">
+            <End Role="type" EntitySet="type" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="rolFK" Association="DonateModel.rolFK">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="donation">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="time" Type="DateTime" />
-          <Property Name="object" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="object" Type="Int32" />
           <Property Name="money" Type="Decimal" />
           <Property Name="donor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="Int64" Nullable="false" />
+          <Property Name="type" Type="Int32" />
+          <NavigationProperty Name="object1" Relationship="DonateModel.objFK" FromRole="donation" ToRole="object" />
+          <NavigationProperty Name="type1" Relationship="DonateModel.typeFK" FromRole="donation" ToRole="type" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="self_id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="parent_id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="donation" Relationship="DonateModel.objFK" FromRole="object" ToRole="donation" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -68,6 +191,16 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="DonateModel.rolFK" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="donation" Relationship="DonateModel.typeFK" FromRole="type" ToRole="donation" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -77,60 +210,124 @@
           <Property Name="nick" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="gender" Type="Int32" />
           <Property Name="imgUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="Int32" />
           <Property Name="remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="lastDate" Type="DateTime" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="lastIp" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="role1" Relationship="DonateModel.rolFK" FromRole="user" ToRole="role" />
         </EntityType>
-        <EntityContainer Name="DonateEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="donation" EntityType="Self.donation" />
-          <EntitySet Name="role" EntityType="Self.role" />
-          <EntitySet Name="user" EntityType="Self.user" />
-        </EntityContainer>
+        <Association Name="objFK">
+          <End Type="DonateModel.object" Role="object" Multiplicity="0..1" />
+          <End Type="DonateModel.donation" Role="donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="object" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="typeFK">
+          <End Type="DonateModel.type" Role="type" Multiplicity="0..1" />
+          <End Type="DonateModel.donation" Role="donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rolFK">
+          <End Type="DonateModel.role" Role="role" Multiplicity="0..1" />
+          <End Type="DonateModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DonatesysModelStoreContainer" CdmEntityContainer="DonateEntities">
+        <EntityContainerMapping StorageEntityContainer="DonateModelStoreContainer" CdmEntityContainer="DonateEntities">
           <EntitySetMapping Name="donation">
-            <EntityTypeMapping TypeName="DonatesysModel.donation">
+            <EntityTypeMapping TypeName="DonateModel.donation">
               <MappingFragment StoreEntitySet="donation">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="object" ColumnName="object" />
-                <ScalarProperty Name="money" ColumnName="money" />
-                <ScalarProperty Name="donor" ColumnName="donor" />
-                <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="donor" ColumnName="donor" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="object" ColumnName="object" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="DonateModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="self_id" ColumnName="self_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="object">
+            <EntityTypeMapping TypeName="DonateModel.object">
+              <MappingFragment StoreEntitySet="object">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role">
-            <EntityTypeMapping TypeName="DonatesysModel.role">
+            <EntityTypeMapping TypeName="DonateModel.role">
               <MappingFragment StoreEntitySet="role">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type">
+            <EntityTypeMapping TypeName="DonateModel.type">
+              <MappingFragment StoreEntitySet="type">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="DonatesysModel.user">
+            <EntityTypeMapping TypeName="DonateModel.user">
               <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="uid" ColumnName="uid" />
-                <ScalarProperty Name="nick" ColumnName="nick" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
-                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="lastDate" ColumnName="lastDate" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="lastIp" ColumnName="lastIp" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastDate" ColumnName="lastDate" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="nick" ColumnName="nick" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

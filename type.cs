@@ -12,18 +12,19 @@ namespace Donate
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public role()
+        public type()
         {
-            this.user = new HashSet<user>();
+            this.donation = new HashSet<donation>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user { get; set; }
+        public virtual ICollection<donation> donation { get; set; }
     }
 }

@@ -25,5 +25,7 @@ namespace Donate
         public Nullable<System.DateTime> lastDate { get; set; }
         public string password { get; set; }
         public string lastIp { get; set; }
+    
+        public virtual role role1 { get; set; }
     }
 }

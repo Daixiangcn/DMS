@@ -4,10 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f02c478c7b0f45af897a95f206d0d6ff" Name="Diagram1">
-        <EntityTypeShape EntityType="DonatesysModel.donation" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DonatesysModel.role" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DonatesysModel.user" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="ee1771421cca432f846a62bc31bff0a3" Name="Diagram1">
+        <EntityTypeShape EntityType="DonateModel.donation" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DonateModel.menu" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DonateModel.object" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DonateModel.role" Width="1.5" PointX="2.75" PointY="5.875" />
+        <EntityTypeShape EntityType="DonateModel.type" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="DonateModel.user" Width="1.5" PointX="5" PointY="5" />
+        <AssociationConnector Association="DonateModel.objFK" />
+        <AssociationConnector Association="DonateModel.typeFK" />
+        <AssociationConnector Association="DonateModel.rolFK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

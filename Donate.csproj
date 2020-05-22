@@ -81,7 +81,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\Edit.aspx" />
+    <Content Include="admin\donationM\Object.aspx" />
+    <Content Include="admin\donationM\Types.aspx" />
+    <Content Include="admin\Search.aspx" />
+    <Content Include="admin\setting\system\SystemSet.aspx" />
+    <Content Include="admin\setting\user\Information.aspx" />
+    <Content Include="admin\setting\user\Password.aspx" />
+    <Content Include="admin\userM\Administrator.aspx" />
+    <Content Include="admin\userM\Role.aspx" />
+    <Content Include="admin\userM\User.aspx" />
+    <Content Include="DonateModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DonateModel.edmx</DependentUpon>
+      <LastGenOutput>DonateModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DonateModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DonateModel.edmx</DependentUpon>
+      <LastGenOutput>DonateModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="home\home.aspx" />
     <Content Include="index.aspx" />
     <Content Include="layuiadmin\config.js" />
     <Content Include="layuiadmin\json\console\prograss.js" />
@@ -278,26 +299,112 @@
     <Content Include="layuiadmin\tpl\system\说明.txt" />
     <Content Include="layuiadmin\tpl\说明.txt" />
     <Content Include="login.aspx" />
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>DonateModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DonateModel.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\donationM\Object.aspx.cs">
+      <DependentUpon>Object.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\donationM\Object.aspx.designer.cs">
+      <DependentUpon>Object.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\donationM\Types.aspx.cs">
+      <DependentUpon>Types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\donationM\Types.aspx.designer.cs">
+      <DependentUpon>Types.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\setting\system\SystemSet.aspx.cs">
+      <DependentUpon>SystemSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\setting\system\SystemSet.aspx.designer.cs">
+      <DependentUpon>SystemSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\setting\user\Information.aspx.cs">
+      <DependentUpon>Information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\setting\user\Information.aspx.designer.cs">
+      <DependentUpon>Information.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\setting\user\Password.aspx.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\setting\user\Password.aspx.designer.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\userM\Administrator.aspx.cs">
+      <DependentUpon>Administrator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userM\Administrator.aspx.designer.cs">
+      <DependentUpon>Administrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\userM\Role.aspx.cs">
+      <DependentUpon>Role.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userM\Role.aspx.designer.cs">
+      <DependentUpon>Role.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\userM\User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userM\User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DonateModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonateModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonateModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonateModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonateModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="donation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="home\home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="home\home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
@@ -307,30 +414,28 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="menu.cs">
+      <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DonateModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DonateModel.edmx</DependentUpon>
+    <Compile Include="object.cs">
+      <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="role.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DonateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="type.cs">
+      <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="user.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="layuiadmin\layui\css\modules\layim\html\getmsg.json" />
+    <Content Include="layuiadmin\layui\font\iconfont.eot" />
+    <Content Include="layuiadmin\layui\font\iconfont.ttf" />
+    <Content Include="layuiadmin\layui\font\iconfont.woff" />
     <EntityDeploy Include="DonateModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DonateModel.Designer.cs</LastGenOutput>
@@ -338,10 +443,6 @@
     <Content Include="DonateModel.edmx.diagram">
       <DependentUpon>DonateModel.edmx</DependentUpon>
     </Content>
-    <Content Include="layuiadmin\layui\css\modules\layim\html\getmsg.json" />
-    <Content Include="layuiadmin\layui\font\iconfont.eot" />
-    <Content Include="layuiadmin\layui\font\iconfont.ttf" />
-    <Content Include="layuiadmin\layui\font\iconfont.woff" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -352,6 +453,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="user\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

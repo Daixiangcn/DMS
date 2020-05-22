@@ -11,6 +11,7 @@ namespace Donate
 {
     public partial class login : System.Web.UI.Page
     {
+        DonateEntities db = new DonateEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,11 +26,17 @@ namespace Donate
                 conn.Open();
                 //Response.Write("数据库连接成功！");
 
-                MySqlCommand cmd = new MySqlCommand(string.Format("select count(*) from user where phoneNumber='{0}' and password='{1}'", TextBox1.Text, TextBox2.Text), conn);
+                MySqlCommand cmd = new MySqlCommand(string.Format("select count(*) from user where phoneNumber='{0}' and password='{1}'", TextBox1.Text.Trim(), TextBox2.Text.Trim()), conn);
                 int count = Convert.ToInt16(cmd.ExecuteScalar());
                 if (count == 1)
                 {
-                    Session["phoneNumber"] = TextBox1.Text;
+                    var query = from u in db.user where u.phoneNumber == TextBox1.Text.Trim() select u;
+                    int role = Convert.ToInt32(query.First().role);
+                    string nick = query.First().nick;
+                    Session.Clear();
+                    Session["role"] = role;
+                    Session["nick"] = nick;
+                    Session["phoneNumber"] = TextBox1.Text.Trim();
                     Response.Redirect("./index.aspx");
                 }
                 else
