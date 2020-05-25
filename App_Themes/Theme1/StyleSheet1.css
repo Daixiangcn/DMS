@@ -1,4 +1,4 @@
-/** layui-v2.3.0 MIT License By https://www.layui.com */
+ï»¿/** layui-v2.3.0 MIT License By https://www.layui.com */
 .layui-inline, img {
     display: inline-block;
     vertical-align: middle
@@ -2771,7 +2771,7 @@ a {
 .layui-table {
     width: 100%;
     background-color: #fff;
-    color: #666;
+    color: #666
 }
 
     .layui-table tr {
@@ -2780,7 +2780,7 @@ a {
     }
 
     .layui-table th {
-        text-align: center;
+        text-align: left;
         font-weight: 400
     }
 
@@ -4430,10 +4430,4 @@ body .layui-util-face {
 .layui-anim-fadeout {
     -webkit-animation-name: layui-fadeout;
     animation-name: layui-fadeout
-}
-/*
-    ×Ô¶¨ÒåÑùÊ½
-*/
-.text-center{
-    text-align: center;
 }

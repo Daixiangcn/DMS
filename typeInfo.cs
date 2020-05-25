@@ -12,10 +12,10 @@ namespace Donate
     using System;
     using System.Collections.Generic;
     
-    public partial class @object
+    public partial class typeInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public @object()
+        public typeInfo()
         {
             this.donation = new HashSet<donation>();
         }

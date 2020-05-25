@@ -16,13 +16,13 @@ namespace Donate
     {
         public int id { get; set; }
         public Nullable<System.DateTime> time { get; set; }
-        public Nullable<int> @object { get; set; }
+        public Nullable<int> obj_id { get; set; }
         public Nullable<decimal> money { get; set; }
         public string donor { get; set; }
         public string message { get; set; }
-        public Nullable<int> type { get; set; }
+        public Nullable<int> type_id { get; set; }
     
-        public virtual @object object1 { get; set; }
-        public virtual type type1 { get; set; }
+        public virtual objectTab objectTab { get; set; }
+        public virtual typeInfo typeInfo { get; set; }
     }
 }

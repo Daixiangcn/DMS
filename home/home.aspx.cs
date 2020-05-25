@@ -25,10 +25,10 @@ namespace Donate.home
                         {
                             all = (decimal?)don.Sum(p => p.money)/10000,
                             count = don.Count(),
-                            lineMoney = (from don2 in db.donation where don2.type == 0 select don2).Sum(q => q.money) / 10000,
-                            outlineMoney = (from don2 in db.donation where don2.type == 1 select don2).Sum(q => q.money) / 10000,
-                            lineCount = (from don2 in db.donation where don2.type == 0 select don2).Count(),
-                            outlineCount = (from don2 in db.donation where don2.type == 1 select don2).Count(),
+                            lineMoney = (from don2 in db.donation where don2.type_id == 1 select don2).Sum(q => q.money) / 10000,
+                            outlineMoney = (from don2 in db.donation where don2.type_id == 2 select don2).Sum(q => q.money) / 10000,
+                            lineCount = (from don2 in db.donation where don2.type_id == 1 select don2).Count(),
+                            outlineCount = (from don2 in db.donation where don2.type_id == 2 select don2).Count(),
                         };
             Label1.Text = query.First().all.ToString();
             Label2.Text = query.First().count.ToString();

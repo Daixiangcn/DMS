@@ -75,9 +75,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\Edit.aspx" />
-    <Content Include="admin\donationM\Object.aspx" />
-    <Content Include="admin\donationM\Types.aspx" />
+    <Content Include="admin\donationM\objectTab\Add.aspx" />
+    <Content Include="admin\donationM\type\Add.aspx" />
+    <Content Include="admin\infoUp\Edit.aspx" />
+    <Content Include="admin\donationM\objectTab\Edit.aspx" />
+    <Content Include="admin\donationM\type\Edit.aspx" />
+    <Content Include="admin\infoUp\Template.aspx" />
     <Content Include="admin\Search.aspx" />
     <Content Include="admin\setting\system\SystemSet.aspx" />
     <Content Include="admin\setting\user\Information.aspx" />
@@ -85,6 +88,7 @@
     <Content Include="admin\userM\Administrator.aspx" />
     <Content Include="admin\userM\Role.aspx" />
     <Content Include="admin\userM\User.aspx" />
+    <Content Include="App_Themes\Theme1\StyleSheet1.css" />
     <Content Include="DonateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DonateModel.edmx</DependentUpon>
@@ -97,6 +101,9 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="home\home.aspx" />
+    <Content Include="img\cancle.png" />
+    <Content Include="img\edit.png" />
+    <Content Include="img\save.png" />
     <Content Include="index.aspx" />
     <Content Include="layuiadmin\config.js" />
     <Content Include="layuiadmin\json\console\prograss.js" />
@@ -295,26 +302,47 @@
     <Content Include="login.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin\Edit.aspx.cs">
+    <Compile Include="admin\donationM\objectTab\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\donationM\objectTab\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\donationM\type\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\donationM\type\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\infoUp\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Edit.aspx.designer.cs">
+    <Compile Include="admin\infoUp\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\donationM\Object.aspx.cs">
-      <DependentUpon>Object.aspx</DependentUpon>
+    <Compile Include="admin\donationM\objectTab\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\donationM\Object.aspx.designer.cs">
-      <DependentUpon>Object.aspx</DependentUpon>
+    <Compile Include="admin\donationM\objectTab\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\donationM\Types.aspx.cs">
-      <DependentUpon>Types.aspx</DependentUpon>
+    <Compile Include="admin\donationM\type\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\donationM\Types.aspx.designer.cs">
-      <DependentUpon>Types.aspx</DependentUpon>
+    <Compile Include="admin\donationM\type\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\infoUp\Template.aspx.cs">
+      <DependentUpon>Template.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\infoUp\Template.aspx.designer.cs">
+      <DependentUpon>Template.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
@@ -410,14 +438,14 @@
     <Compile Include="menu.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="object.cs">
+    <Compile Include="objectTab.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="role.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="type.cs">
+    <Compile Include="typeInfo.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="user.cs">
@@ -436,6 +464,7 @@
     <Content Include="DonateModel.edmx.diagram">
       <DependentUpon>DonateModel.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Themes\Theme1\Skin1.skin" />
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />

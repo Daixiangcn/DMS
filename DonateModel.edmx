@@ -11,11 +11,11 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="time" Type="date" />
-          <Property Name="object" Type="int" />
+          <Property Name="obj_id" Type="int" />
           <Property Name="money" Type="decimal" Precision="15" Scale="2" />
           <Property Name="donor" Type="varchar" MaxLength="255" />
           <Property Name="message" Type="text" />
-          <Property Name="type" Type="int" />
+          <Property Name="type_id" Type="int" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -30,7 +30,7 @@
           <Property Name="url" Type="varchar" MaxLength="255" />
           <Property Name="icon" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="object">
+        <EntityType Name="objectTab">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -45,11 +45,11 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="type">
+        <EntityType Name="typeInfo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="25" />
           <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
@@ -70,14 +70,14 @@
           <Property Name="lastIp" Type="varchar" MaxLength="32" />
         </EntityType>
         <Association Name="objFK">
-          <End Role="object" Type="Self.object" Multiplicity="0..1" />
+          <End Role="objectTab" Type="Self.objectTab" Multiplicity="0..1" />
           <End Role="donation" Type="Self.donation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="object">
+            <Principal Role="objectTab">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donation">
-              <PropertyRef Name="object" />
+              <PropertyRef Name="obj_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -93,35 +93,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="typeFK">
-          <End Role="type" Type="Self.type" Multiplicity="0..1" />
+        <Association Name="tpFK">
+          <End Role="typeInfo" Type="Self.typeInfo" Multiplicity="0..1" />
           <End Role="donation" Type="Self.donation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="type">
+            <Principal Role="typeInfo">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donation">
-              <PropertyRef Name="type" />
+              <PropertyRef Name="type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DonateModelStoreContainer">
           <EntitySet Name="donation" EntityType="Self.donation" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="menu" EntityType="Self.menu" Schema="donate_sys" store:Type="Tables" />
-          <EntitySet Name="object" EntityType="Self.object" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="objectTab" EntityType="Self.objectTab" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="donate_sys" store:Type="Tables" />
-          <EntitySet Name="type" EntityType="Self.type" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="typeInfo" EntityType="Self.typeInfo" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="donate_sys" store:Type="Tables" />
           <AssociationSet Name="objFK" Association="Self.objFK">
-            <End Role="object" EntitySet="object" />
+            <End Role="objectTab" EntitySet="objectTab" />
             <End Role="donation" EntitySet="donation" />
           </AssociationSet>
           <AssociationSet Name="rolFK" Association="Self.rolFK">
             <End Role="role" EntitySet="role" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
-          <AssociationSet Name="typeFK" Association="Self.typeFK">
-            <End Role="type" EntitySet="type" />
+          <AssociationSet Name="tpFK" Association="Self.tpFK">
+            <End Role="typeInfo" EntitySet="typeInfo" />
             <End Role="donation" EntitySet="donation" />
           </AssociationSet>
         </EntityContainer>
@@ -132,16 +132,16 @@
         <EntityContainer Name="DonateEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="donation" EntityType="DonateModel.donation" />
           <EntitySet Name="menu" EntityType="DonateModel.menu" />
-          <EntitySet Name="object" EntityType="DonateModel.object" />
+          <EntitySet Name="objectTab" EntityType="DonateModel.objectTab" />
           <EntitySet Name="role" EntityType="DonateModel.role" />
-          <EntitySet Name="type" EntityType="DonateModel.type" />
+          <EntitySet Name="typeInfo" EntityType="DonateModel.typeInfo" />
           <EntitySet Name="user" EntityType="DonateModel.user" />
           <AssociationSet Name="objFK" Association="DonateModel.objFK">
-            <End Role="object" EntitySet="object" />
+            <End Role="objectTab" EntitySet="objectTab" />
             <End Role="donation" EntitySet="donation" />
           </AssociationSet>
-          <AssociationSet Name="typeFK" Association="DonateModel.typeFK">
-            <End Role="type" EntitySet="type" />
+          <AssociationSet Name="tpFK" Association="DonateModel.tpFK">
+            <End Role="typeInfo" EntitySet="typeInfo" />
             <End Role="donation" EntitySet="donation" />
           </AssociationSet>
           <AssociationSet Name="rolFK" Association="DonateModel.rolFK">
@@ -155,13 +155,13 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="time" Type="DateTime" />
-          <Property Name="object" Type="Int32" />
+          <Property Name="obj_id" Type="Int32" />
           <Property Name="money" Type="Decimal" />
           <Property Name="donor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="Int32" />
-          <NavigationProperty Name="object1" Relationship="DonateModel.objFK" FromRole="donation" ToRole="object" />
-          <NavigationProperty Name="type1" Relationship="DonateModel.typeFK" FromRole="donation" ToRole="type" />
+          <Property Name="type_id" Type="Int32" />
+          <NavigationProperty Name="objectTab" Relationship="DonateModel.objFK" FromRole="donation" ToRole="objectTab" />
+          <NavigationProperty Name="typeInfo" Relationship="DonateModel.tpFK" FromRole="donation" ToRole="typeInfo" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -176,14 +176,14 @@
           <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="object">
+        <EntityType Name="objectTab">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="donation" Relationship="DonateModel.objFK" FromRole="object" ToRole="donation" />
+          <NavigationProperty Name="donation" Relationship="DonateModel.objFK" FromRole="objectTab" ToRole="donation" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -193,14 +193,14 @@
           <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="user" Relationship="DonateModel.rolFK" FromRole="role" ToRole="user" />
         </EntityType>
-        <EntityType Name="type">
+        <EntityType Name="typeInfo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="donation" Relationship="DonateModel.typeFK" FromRole="type" ToRole="donation" />
+          <NavigationProperty Name="donation" Relationship="DonateModel.tpFK" FromRole="typeInfo" ToRole="donation" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -220,26 +220,26 @@
           <NavigationProperty Name="role1" Relationship="DonateModel.rolFK" FromRole="user" ToRole="role" />
         </EntityType>
         <Association Name="objFK">
-          <End Type="DonateModel.object" Role="object" Multiplicity="0..1" />
+          <End Type="DonateModel.objectTab" Role="objectTab" Multiplicity="0..1" />
           <End Type="DonateModel.donation" Role="donation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="object">
+            <Principal Role="objectTab">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donation">
-              <PropertyRef Name="object" />
+              <PropertyRef Name="obj_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="typeFK">
-          <End Type="DonateModel.type" Role="type" Multiplicity="0..1" />
+        <Association Name="tpFK">
+          <End Type="DonateModel.typeInfo" Role="typeInfo" Multiplicity="0..1" />
           <End Type="DonateModel.donation" Role="donation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="type">
+            <Principal Role="typeInfo">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donation">
-              <PropertyRef Name="type" />
+              <PropertyRef Name="type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -255,7 +255,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -264,11 +264,11 @@
           <EntitySetMapping Name="donation">
             <EntityTypeMapping TypeName="DonateModel.donation">
               <MappingFragment StoreEntitySet="donation">
-                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="donor" ColumnName="donor" />
                 <ScalarProperty Name="money" ColumnName="money" />
-                <ScalarProperty Name="object" ColumnName="object" />
+                <ScalarProperty Name="obj_id" ColumnName="obj_id" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -288,9 +288,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="object">
-            <EntityTypeMapping TypeName="DonateModel.object">
-              <MappingFragment StoreEntitySet="object">
+          <EntitySetMapping Name="objectTab">
+            <EntityTypeMapping TypeName="DonateModel.objectTab">
+              <MappingFragment StoreEntitySet="objectTab">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -305,9 +305,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="type">
-            <EntityTypeMapping TypeName="DonateModel.type">
-              <MappingFragment StoreEntitySet="type">
+          <EntitySetMapping Name="typeInfo">
+            <EntityTypeMapping TypeName="DonateModel.typeInfo">
+              <MappingFragment StoreEntitySet="typeInfo">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />

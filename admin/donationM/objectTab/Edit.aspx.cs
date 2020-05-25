@@ -9,6 +9,7 @@ namespace Donate.admin.management
 {
     public partial class Object : System.Web.UI.Page
     {
+        DonateEntities db = new DonateEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             // 安全必要设置

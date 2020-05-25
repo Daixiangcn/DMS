@@ -27,9 +27,9 @@ namespace Donate
     
         public virtual DbSet<donation> donation { get; set; }
         public virtual DbSet<menu> menu { get; set; }
-        public virtual DbSet<@object> @object { get; set; }
+        public virtual DbSet<objectTab> objectTab { get; set; }
         public virtual DbSet<role> role { get; set; }
-        public virtual DbSet<type> type { get; set; }
+        public virtual DbSet<typeInfo> typeInfo { get; set; }
         public virtual DbSet<user> user { get; set; }
     }
 }
