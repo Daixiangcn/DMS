@@ -32,18 +32,19 @@ namespace Donate
                 Label1.Text = nick;
                 // 右上角菜单列表
                 string menuID = "";
-                if (role == 3) { // 普通用户
+                if (role == 3)
+                { // 普通用户
                     menuID = "D";
                 }
-                else if(role == 1||role==2){ // 管理员
+                else if (role == 1 || role == 2)
+                { // 管理员
                     menuID = "H2";
                 }
-                var query1 = from item in db.menu
-                            where item.parent_id == menuID
-                            select new { item.name, item.url };
-                rmenuRepeater.DataSource = query1.ToList();
+                var rquery = from item in db.menu
+                             where item.parent_id == menuID
+                             select new { item.name, item.url };
+                rmenuRepeater.DataSource = rquery.ToList();
                 rmenuRepeater.DataBind();
-
             }
         }
         protected void menuRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)

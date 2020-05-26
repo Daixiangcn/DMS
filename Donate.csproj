@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -65,9 +67,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -82,13 +84,12 @@
     <Content Include="admin\donationM\type\Edit.aspx" />
     <Content Include="admin\infoUp\Template.aspx" />
     <Content Include="admin\Search.aspx" />
+    <Content Include="admin\setting\consumer\Inform.aspx" />
+    <Content Include="admin\setting\consumer\Password.aspx" />
     <Content Include="admin\setting\system\SystemSet.aspx" />
-    <Content Include="admin\setting\user\Information.aspx" />
-    <Content Include="admin\setting\user\Password.aspx" />
     <Content Include="admin\userM\Administrator.aspx" />
     <Content Include="admin\userM\Role.aspx" />
     <Content Include="admin\userM\User.aspx" />
-    <Content Include="App_Themes\Theme1\StyleSheet1.css" />
     <Content Include="DonateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DonateModel.edmx</DependentUpon>
@@ -103,6 +104,7 @@
     <Content Include="home\home.aspx" />
     <Content Include="img\cancle.png" />
     <Content Include="img\edit.png" />
+    <Content Include="img\head\daixiang.jpg" />
     <Content Include="img\save.png" />
     <Content Include="index.aspx" />
     <Content Include="layuiadmin\config.js" />
@@ -351,26 +353,26 @@
     <Compile Include="admin\Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\setting\consumer\Inform.aspx.cs">
+      <DependentUpon>Inform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\setting\consumer\Inform.aspx.designer.cs">
+      <DependentUpon>Inform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\setting\consumer\Password.aspx.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\setting\consumer\Password.aspx.designer.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\setting\system\SystemSet.aspx.cs">
       <DependentUpon>SystemSet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\setting\system\SystemSet.aspx.designer.cs">
       <DependentUpon>SystemSet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\setting\user\Information.aspx.cs">
-      <DependentUpon>Information.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\setting\user\Information.aspx.designer.cs">
-      <DependentUpon>Information.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\setting\user\Password.aspx.cs">
-      <DependentUpon>Password.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\setting\user\Password.aspx.designer.cs">
-      <DependentUpon>Password.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\userM\Administrator.aspx.cs">
       <DependentUpon>Administrator.aspx</DependentUpon>
@@ -464,7 +466,7 @@
     <Content Include="DonateModel.edmx.diagram">
       <DependentUpon>DonateModel.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Themes\Theme1\Skin1.skin" />
+    <Content Include="files\download\20200525V2.xls" />
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
@@ -479,6 +481,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="files\upload\" />
     <Folder Include="user\" />
   </ItemGroup>
   <PropertyGroup>

@@ -33,7 +33,9 @@
                         <div class="layui-card-body">
                             <p>版本号：V2.0</p>
                             <p>发布时间：2020年5月25日</p>
-                            <button class="layui-btn"><i class="layui-icon layui-icon-template-1"></i>  数据模板 V2.0</button>
+                            <a href="/files/download/20200525V2.xls">
+                                <asp:Button ID="Button1" runat="server" Text="数据模板 V2.0" class="layui-btn" OnClick="Button1_Click" />
+                            </a>              
                         </div>
                     </div>
                 </div>

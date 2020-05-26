@@ -18,5 +18,13 @@ namespace Donate.admin.infoUp
             }
             int role = Convert.ToInt32(Session["role"]);
         }
+        // 文件下载
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=20200525V2.xls");
+            string filename = Server.MapPath("/files/download/20200525V2.xls");
+            Response.TransmitFile(filename);
+        }
     }
 }

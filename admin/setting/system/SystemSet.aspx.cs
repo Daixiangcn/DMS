@@ -18,5 +18,15 @@ namespace Donate.admin.setting.system
             }
             int role = Convert.ToInt32(Session["role"]);
         }
+        // 立即提交
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
+        }
     }
 }

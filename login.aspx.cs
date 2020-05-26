@@ -33,10 +33,12 @@ namespace Donate
                     var query = from u in db.user where u.phoneNumber == TextBox1.Text.Trim() select u;
                     int role = Convert.ToInt32(query.First().role);
                     string nick = query.First().nick;
+                    int uid = query.First().uid;
                     Session.Clear();
                     Session["role"] = role;
                     Session["nick"] = nick;
                     Session["phoneNumber"] = TextBox1.Text.Trim();
+                    Session["uid"] = uid;
                     Response.Redirect("./index.aspx");
                 }
                 else
