@@ -18,5 +18,26 @@ namespace Donate.admin.UserManagement
             }
             int role = Convert.ToInt32(Session["role"]);
         }
+        // 搜索
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            GridView1.DataSourceID = "SqlDataSource3";
+            GridView1.DataBind();
+        }
+        // 查询全部
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            GridView1.DataSourceID = "SqlDataSource1";
+            GridView1.DataBind();
+        }
+        // 选择后弹出新页
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int x = GridView1.SelectedIndex;
+            if (x>-1) {
+                int uid = Convert.ToInt32(GridView1.Rows[x].Cells[0].Text);
+                Response.Write("<script></script>");
+            }
+        }
     }
 }
