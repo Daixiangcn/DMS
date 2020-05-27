@@ -17,9 +17,9 @@
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
                 <div class="layui-card">
-                    <div class="layui-card-body" pad15>
-                        <form id="form1" runat="server">
-                            <div class="layui-form"  wid100 lay-filter>
+                    <form id="form1" runat="server" class="layui-form" lay-filter="component-form-group">
+                        <div class="layui-card-body" pad15>
+                            <div class="layui-form" wid100 lay-filter>
                                 <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="uid">
 
                                     <EditItemTemplate>
@@ -54,19 +54,23 @@
                                         </div>
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">电子邮箱</label>
-                                            <div class="layui-input-block">
+                                            <div class="layui-input-inline">
                                                 <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' class="layui-input" />
                                             </div>
                                         </div>
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">头像</label>
                                             <div class="layui-input-inline">
-                                                <asp:TextBox ID="imgUrlTextBox" runat="server" Text='<%# Bind("imgUrl") %>' class="layui-input" />
+                                                <asp:TextBox ID="imgUrlTextBox" runat="server" Text='<%# Bind("imgUrl") %>' class="layui-input" Visible="False" />
                                             </div>
-                                            <div class="layui-input-inline layui-btn-container" style="width: auto;">
-                                                <asp:FileUpload ID="FileUpload1" runat="server" class="layui-input"/>
-                                                <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button1_Click" class="layui-btn" />
+                                            <div class="layui-input-inline" style="width: auto;">
+                                                <asp:FileUpload ID="FileUpload1" runat="server"/>
+                                                <asp:Button ID="Button3" runat="server" Text="上传图片" OnClick="Button1_Click" class="layui-btn" />
                                             </div>
+                                            <div class="layui-input-inline layui-btn-container" style="width: 200px;">
+                                                <asp:Image ID="Image2" runat="server" ImageUrl="" Width="100px" />
+                                            </div>
+                                        
                                         </div>
                                         <div class="layui-form-item layui-form-text">
                                             <label class="layui-form-label">备注信息</label>
@@ -116,7 +120,7 @@
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">头像</label>
                                             <div class="layui-input-block" style="line-height: 38px">
-                                                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("imgUrl") %>' Width="200px" />
+                                                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("imgUrl") %>' Width="100px" />
                                             </div>
                                         </div>
                                         <div class="layui-form-item layui-form-text">
@@ -133,11 +137,10 @@
                                     </ItemTemplate>
                                 </asp:FormView>
                             </div>
-                        </form>
-                    </div>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT * FROM role"></asp:SqlDataSource>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT uid,nick,gender,imgUrl,phoneNumber,email,role,remarks  FROM  `user` " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)"></asp:SqlDataSource>
-
+                        </div>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT * FROM role"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT uid,nick,gender,imgUrl,phoneNumber,email,role,remarks  FROM  `user` " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)"></asp:SqlDataSource>
+                    </form>
                     <%--          <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT uid,nick,gender,imgUrl,phoneNumber,email,role.name as role,remarks  FROM role INNER JOIN `user` ON role.id = `user`.role WHERE (`user`.uid = ?)" UpdateCommand="UPDATE `user` SET nick = @nick, gender = @nick, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)">
                         <SelectParameters>
                             <asp:SessionParameter Name="uid" SessionField="uid " Type="String" />

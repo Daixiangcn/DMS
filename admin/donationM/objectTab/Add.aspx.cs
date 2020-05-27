@@ -12,7 +12,12 @@ namespace Donate.admin.donationM.objectTab
         DonateEntities db = new DonateEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // 安全必要设置
+            if (Session["phoneNumber"] == null)
+            {
+                Response.Redirect("./login.aspx");
+            }
+            int role = Convert.ToInt32(Session["role"]);
         }
         // 立即提交
         protected void Button1_Click(object sender, EventArgs e)
@@ -25,6 +30,11 @@ namespace Donate.admin.donationM.objectTab
             db.objectTab.Add(obj);
             db.SaveChanges();
             Response.Write("<script>alert('成功添加一条记录！')</script>");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            TextBox1.Text = "";
         }
     }
 }

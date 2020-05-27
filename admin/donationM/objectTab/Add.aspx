@@ -22,10 +22,10 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">项目名称</label>
                             <div class="layui-input-inline">
-                                <asp:TextBox ID="TextBox1" runat="server" class="layui-input"></asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server" class="layui-input" ValidationGroup="add"></asp:TextBox>
                             </div>
                         </div>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="项目名称不能为空" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="项目名称不能为空" ForeColor="Red" ValidationGroup="add"></asp:RequiredFieldValidator>
                         <div class="layui-form-item">
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">项目描述</label>
@@ -36,8 +36,8 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <asp:Button ID="Button1" runat="server" Text="立即提交" class="layui-btn" lay-filter="component-form-element" OnClick="Button1_Click" />
-                                <asp:Button ID="Button2" runat="server" Text="重置" class="layui-btn layui-btn-primary" />
+                                <asp:Button ID="Button1" runat="server" Text="立即提交" class="layui-btn" lay-filter="component-form-element" OnClick="Button1_Click" ValidationGroup="add" />
+                                <asp:Button ID="Button2" runat="server" Text="重置" class="layui-btn layui-btn-primary" OnClick="Button2_Click" />
                             </div>
                         </div>
                     </div>
