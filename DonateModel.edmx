@@ -45,6 +45,21 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="systemInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="domain" Type="varchar" MaxLength="100" />
+          <Property Name="cache" Type="double" />
+          <Property Name="max_file_size" Type="double" />
+          <Property Name="file_type" Type="varchar" MaxLength="150" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="keywords" Type="varchar" MaxLength="150" />
+          <Property Name="description" Type="varchar" MaxLength="150" />
+          <Property Name="copyright" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="typeInfo">
           <Key>
             <PropertyRef Name="id" />
@@ -110,6 +125,7 @@
           <EntitySet Name="menu" EntityType="Self.menu" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="objectTab" EntityType="Self.objectTab" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="donate_sys" store:Type="Tables" />
+          <EntitySet Name="systemInfo" EntityType="Self.systemInfo" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="typeInfo" EntityType="Self.typeInfo" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="donate_sys" store:Type="Tables" />
           <AssociationSet Name="objFK" Association="Self.objFK">
@@ -148,6 +164,7 @@
             <End Role="role" EntitySet="role" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
+          <EntitySet Name="systemInfo" EntityType="DonateModel.systemInfo" />
         </EntityContainer>
         <EntityType Name="donation">
           <Key>
@@ -255,6 +272,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="systemInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cache" Type="Double" />
+          <Property Name="max_file_size" Type="Double" />
+          <Property Name="file_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="keywords" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="copyright" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -328,6 +360,22 @@
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="nick" ColumnName="nick" />
                 <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systemInfo">
+            <EntityTypeMapping TypeName="DonateModel.systemInfo">
+              <MappingFragment StoreEntitySet="systemInfo">
+                <ScalarProperty Name="copyright" ColumnName="copyright" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="file_type" ColumnName="file_type" />
+                <ScalarProperty Name="max_file_size" ColumnName="max_file_size" />
+                <ScalarProperty Name="cache" ColumnName="cache" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

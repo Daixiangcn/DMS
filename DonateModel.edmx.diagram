@@ -14,6 +14,7 @@
         <AssociationConnector Association="DonateModel.objFK" />
         <AssociationConnector Association="DonateModel.tpFK" />
         <AssociationConnector Association="DonateModel.rolFK" />
+        <EntityTypeShape EntityType="DonateModel.systemInfo" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

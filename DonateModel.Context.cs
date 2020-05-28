@@ -31,5 +31,6 @@ namespace Donate
         public virtual DbSet<role> role { get; set; }
         public virtual DbSet<typeInfo> typeInfo { get; set; }
         public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<systemInfo> systemInfo { get; set; }
     }
 }

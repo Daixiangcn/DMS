@@ -457,6 +457,9 @@
     <Compile Include="role.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="systemInfo.cs">
+      <DependentUpon>DonateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="typeInfo.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>

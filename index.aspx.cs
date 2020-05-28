@@ -30,6 +30,12 @@ namespace Donate
                     nick = Session["nick"].ToString();
                 }
                 Label1.Text = nick;
+                // 系统信息获取
+                var query1 = from item in db.systemInfo select item;
+                Page.Title = "首页 - " + query1.First().title;
+                Page.MetaKeywords = query1.First().keywords;
+                Page.MetaDescription = query1.First().description;
+                Label2.Text = query1.First().name;
                 // 右上角菜单列表
                 string menuID = "";
                 if (role == 3)

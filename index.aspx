@@ -4,10 +4,13 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>慈善捐赠管理系统 - 首页</title>
+    <title>系统
+    </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="layuiadmin/style/admin.css" media="all">
 </head>
@@ -24,11 +27,11 @@
                                 <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
                             </a>
                         </li>
-                        <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                            <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                        <%--                        <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                            <a href="https://dms.idcs.vip" target="_blank" title="前台">
                                 <i class="layui-icon layui-icon-website"></i>
                             </a>
-                        </li>
+                        </li>--%>
                         <li class="layui-nav-item" lay-unselect>
                             <a href="javascript:;" layadmin-event="refresh" title="刷新">
                                 <i class="layui-icon layui-icon-refresh-3"></i>
@@ -66,7 +69,7 @@
                             <dl class="layui-nav-child">
                                 <asp:Repeater ID="rmenuRepeater" runat="server">
                                     <ItemTemplate>
-                                        <dd><a lay-href=<%# Eval("url") %>><%# Eval("name") %></a></dd>
+                                        <dd><a lay-href='<%# Eval("url") %>'><%# Eval("name") %></a></dd>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <hr>
@@ -88,7 +91,7 @@
                 <div class="layui-side layui-side-menu">
                     <div class="layui-side-scroll">
                         <div class="layui-logo" lay-href="home/home.aspx">
-                            <i class="layui-inline layui-icon layui-icon-find-fill"></i>慈善捐赠管理系统
+                            <i class="layui-inline layui-icon layui-icon-find-fill"></i> <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
                         </div>
 
                         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">

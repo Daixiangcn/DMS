@@ -14,7 +14,12 @@ namespace Donate
         DonateEntities db = new DonateEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            // 系统信息获取
+            var query = from item in db.systemInfo select item;
+            Label2.Text = query.First().name;
+            Page.Title = "统一身份认证 - " + query.First().title;
+            Page.MetaKeywords = query.First().keywords;
+            Page.MetaDescription = query.First().description;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
