@@ -87,6 +87,7 @@
     <Content Include="admin\setting\consumer\Inform.aspx" />
     <Content Include="admin\setting\consumer\Password.aspx" />
     <Content Include="admin\setting\system\SystemSet.aspx" />
+    <Content Include="admin\userM\addRole.aspx" />
     <Content Include="admin\userM\Administrator.aspx" />
     <Content Include="admin\userM\moreInfo.aspx" />
     <Content Include="admin\userM\Role.aspx" />
@@ -376,6 +377,13 @@
     </Compile>
     <Compile Include="admin\setting\system\SystemSet.aspx.designer.cs">
       <DependentUpon>SystemSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\userM\addRole.aspx.cs">
+      <DependentUpon>addRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userM\addRole.aspx.designer.cs">
+      <DependentUpon>addRole.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\userM\Administrator.aspx.cs">
       <DependentUpon>Administrator.aspx</DependentUpon>
