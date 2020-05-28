@@ -64,13 +64,13 @@
                                                 <asp:TextBox ID="imgUrlTextBox" runat="server" Text='<%# Bind("imgUrl") %>' class="layui-input" Visible="False" />
                                             </div>
                                             <div class="layui-input-inline" style="width: auto;">
-                                                <asp:FileUpload ID="FileUpload1" runat="server"/>
+                                                <asp:FileUpload ID="FileUpload1" runat="server" />
                                                 <asp:Button ID="Button3" runat="server" Text="上传图片" OnClick="Button1_Click" class="layui-btn" />
                                             </div>
                                             <div class="layui-input-inline layui-btn-container" style="width: 200px;">
                                                 <asp:Image ID="Image2" runat="server" ImageUrl="" Width="100px" />
                                             </div>
-                                        
+
                                         </div>
                                         <div class="layui-form-item layui-form-text">
                                             <label class="layui-form-label">备注信息</label>
@@ -139,13 +139,12 @@
                             </div>
                         </div>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT * FROM role"></asp:SqlDataSource>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT uid,nick,gender,imgUrl,phoneNumber,email,role,remarks  FROM  `user` " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT *  FROM user WHERE (uid = ?) " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)">
+                            <SelectParameters>
+                                <asp:SessionParameter Name="uid" SessionField="uid" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
                     </form>
-                    <%--          <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT uid,nick,gender,imgUrl,phoneNumber,email,role.name as role,remarks  FROM role INNER JOIN `user` ON role.id = `user`.role WHERE (`user`.uid = ?)" UpdateCommand="UPDATE `user` SET nick = @nick, gender = @nick, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)">
-                        <SelectParameters>
-                            <asp:SessionParameter Name="uid" SessionField="uid " Type="String" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>--%>
                 </div>
             </div>
         </div>
