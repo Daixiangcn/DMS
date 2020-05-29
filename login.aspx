@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="login.aspx.cs" Inherits="Donate.login" %>
 
+<%@ Register assembly="WebValidates" namespace="WebValidates" tagprefix="cc1" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,18 +41,23 @@
                         <div class="layui-row">
                             <div class="layui-col-xs7">
                                 <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
-                                <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="layui-input">
+                             
+                                <asp:TextBox ID="TextBox3" runat="server" class="layui-input"></asp:TextBox>
                             </div>
                             <div class="layui-col-xs5">
                                 <div style="margin-left: 10px;">
-                                    <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
+                                    
+                                    <cc1:SerialNumber ID="SerialNumber1" runat="server"   >
+                                    </cc1:SerialNumber>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item" style="margin-bottom: 20px;">
-                        <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
+                         
                         <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
+                        <asp:CheckBox ID="CheckBox1" runat="server" Text="一周内免登陆"  Height="16px" OnCheckedChanged="CheckBox1_CheckedChanged"   />
                     </div>
                     <div class="layui-form-item">
                         <asp:Button ID="Button1" runat="server" Text="登录系统" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit" OnClick="Button1_Click" /></div>
