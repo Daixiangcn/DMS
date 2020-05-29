@@ -12,6 +12,9 @@
 Web.config
 Web.Debug.config
 Web.Release.config
+Register.aspx
+Register.Debug.config
+Register.Release.config
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

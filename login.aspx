@@ -51,13 +51,11 @@
                     <div class="layui-form-item">
                         <div class="layui-row">
                             <div class="auto-style1">
-                                <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
-                             
+                                <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>         
                                 <asp:TextBox ID="TextBox3" runat="server" class="layui-input" AutoPostBack="True" CausesValidation="True"></asp:TextBox>
                             </div>
                             <div class="layui-col-xs5">
-                                <div style="margin-left: 10px;">
-                                    
+                                <div style="margin-left: 10px;">                    
                                     <cc1:SerialNumber ID="SerialNumber1" runat="server"   >
                                     </cc1:SerialNumber>
                                     
