@@ -13,9 +13,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all"/>
-    <link rel="stylesheet" href="/layuiadmin/style/login.css" media="all"/>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/login.css" media="all">
+    <style type="text/css">
+        .auto-style1 {
+            position: relative;
+            display: block;
+            box-sizing: border-box;
+            float: left;
+            width: 58.33333333%;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -39,10 +50,10 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-row">
-                            <div class="layui-col-xs7">
+                            <div class="auto-style1">
                                 <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
                              
-                                <asp:TextBox ID="TextBox3" runat="server" class="layui-input"></asp:TextBox>
+                                <asp:TextBox ID="TextBox3" runat="server" class="layui-input" AutoPostBack="True" CausesValidation="True"></asp:TextBox>
                             </div>
                             <div class="layui-col-xs5">
                                 <div style="margin-left: 10px;">

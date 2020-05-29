@@ -36,9 +36,9 @@ namespace Donate
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            bool flag;
+            bool flag=true;
             flag = this.SerialNumber1.CheckSN(TextBox3.Text.Trim());
-            this.SerialNumber1.Create();
+          
             string conString = ConfigurationManager.ConnectionStrings["DonateConnectionStrings"].ToString();
             MySqlConnection conn = new MySqlConnection(conString);
             try
@@ -83,6 +83,7 @@ namespace Donate
             {
                 conn.Close();
             }
+            this.SerialNumber1.Create();
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
