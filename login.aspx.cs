@@ -20,8 +20,12 @@ namespace Donate
             Page.Title = "统一身份认证 - " + query.First().title;
             Page.MetaKeywords = query.First().keywords;
             Page.MetaDescription = query.First().description;
-            do { this.SerialNumber1.Create(); }
-            while (this.SerialNumber1.SN.Length != 4);
+           
+            if (!IsPostBack)
+            {
+               this.SerialNumber1.Create(); 
+             
+            }
             if (Request.Cookies["phoneNumber"] != null)
             {
                 TextBox1.Text = Request.Cookies["phoneNumber"].Value;
@@ -34,9 +38,9 @@ namespace Donate
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            bool flag;
+            bool flag=true;
             flag = this.SerialNumber1.CheckSN(TextBox3.Text.Trim());
-            this.SerialNumber1.Create();
+          
             string conString = ConfigurationManager.ConnectionStrings["DonateConnectionStrings"].ToString();
             MySqlConnection conn = new MySqlConnection(conString);
             try
@@ -81,6 +85,7 @@ namespace Donate
             {
                 conn.Close();
             }
+            this.SerialNumber1.Create();
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)

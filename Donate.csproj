@@ -492,6 +492,20 @@
     <Compile Include="users\Publicity.aspx.designer.cs">
       <DependentUpon>Publicity.aspx</DependentUpon>
     </Compile>
+    <Compile Include="users\setting\Inform.aspx.cs">
+      <DependentUpon>Inform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\setting\Inform.aspx.designer.cs">
+      <DependentUpon>Inform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="users\setting\Password.aspx.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\setting\Password.aspx.designer.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="layuiadmin\layui\css\modules\layim\html\getmsg.json" />
@@ -510,6 +524,8 @@
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <Content Include="users\Authentication.aspx" />
     <Content Include="users\Publicity.aspx" />
+    <Content Include="users\setting\Inform.aspx" />
+    <Content Include="users\setting\Password.aspx" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
