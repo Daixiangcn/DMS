@@ -16,7 +16,7 @@ namespace Donate
             // 安全必要设置
             if (Session["phoneNumber"] == null)
             {
-                Response.Redirect("./login.aspx");
+                Response.Redirect("/login.aspx");
             }
             int role = Convert.ToInt32(Session["role"]);
             if (!IsPostBack)
