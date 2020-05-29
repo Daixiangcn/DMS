@@ -13,16 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-    <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all"/>
+    <link rel="stylesheet" href="/layuiadmin/style/login.css" media="all"/>
 </head>
 <body>
     <form id="form1" runat="server">
        <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
             <div class="layadmin-user-login-main">
                 <div class="layadmin-user-login-box layadmin-user-login-header">
-                    <h2>
+                    <h2 lang="zh-cn" class="layadmin-user-login-codeimg">
                         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></h2>
                     <p>
                         <asp:Label ID="Label1" runat="server" Text="统一身份认证"></asp:Label>
