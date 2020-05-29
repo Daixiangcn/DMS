@@ -1,7 +1,7 @@
 # DMS（捐赠管理系统）项目说明及更新进度
 ## 系统功能模块图
 
-![系统功能模块图](https://github.com/Daixiangcn/DMS/blob/master/img/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%9B%BE.png?raw=true)
+![系统功能模块图](https://github.com/Daixiangcn/DMS/blob/master/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%9B%BE.png?raw=true)
 
 ## 系统数据模型图
 

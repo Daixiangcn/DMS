@@ -40,11 +40,11 @@ namespace Donate
                 string menuID = "";
                 if (role == 3)
                 { // 普通用户
-                    menuID = "D";
+                    menuID = "E";
                 }
                 else if (role == 1 || role == 2)
                 { // 管理员
-                    menuID = "H2";
+                    menuID = "I2";
                 }
                 var rquery = from item in db.menu
                              where item.parent_id == menuID
