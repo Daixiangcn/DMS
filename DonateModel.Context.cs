@@ -25,12 +25,13 @@ namespace Donate
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Authentication> Authentication { get; set; }
         public virtual DbSet<donation> donation { get; set; }
         public virtual DbSet<menu> menu { get; set; }
         public virtual DbSet<objectTab> objectTab { get; set; }
         public virtual DbSet<role> role { get; set; }
+        public virtual DbSet<systemInfo> systemInfo { get; set; }
         public virtual DbSet<typeInfo> typeInfo { get; set; }
         public virtual DbSet<user> user { get; set; }
-        public virtual DbSet<systemInfo> systemInfo { get; set; }
     }
 }

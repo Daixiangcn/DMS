@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DonateModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authentication">
+          <Key>
+            <PropertyRef Name="id_num" />
+          </Key>
+          <Property Name="id_num" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="15" />
+          <Property Name="uid" Type="int" />
+        </EntityType>
         <EntityType Name="donation">
           <Key>
             <PropertyRef Name="id" />
@@ -42,7 +51,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="systemInfo">
@@ -83,6 +92,7 @@
           <Property Name="lastDate" Type="datetime" Precision="0" />
           <Property Name="password" Type="varchar" MaxLength="100" />
           <Property Name="lastIp" Type="varchar" MaxLength="32" />
+          <Property Name="isAut" Type="int" />
         </EntityType>
         <Association Name="objFK">
           <End Role="objectTab" Type="Self.objectTab" Multiplicity="0..1" />
@@ -121,6 +131,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DonateModelStoreContainer">
+          <EntitySet Name="Authentication" EntityType="Self.Authentication" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="donation" EntityType="Self.donation" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="menu" EntityType="Self.menu" Schema="donate_sys" store:Type="Tables" />
           <EntitySet Name="objectTab" EntityType="Self.objectTab" Schema="donate_sys" store:Type="Tables" />
@@ -146,10 +157,12 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DonateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DonateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authentication" EntityType="DonateModel.Authentication" />
           <EntitySet Name="donation" EntityType="DonateModel.donation" />
           <EntitySet Name="menu" EntityType="DonateModel.menu" />
           <EntitySet Name="objectTab" EntityType="DonateModel.objectTab" />
           <EntitySet Name="role" EntityType="DonateModel.role" />
+          <EntitySet Name="systemInfo" EntityType="DonateModel.systemInfo" />
           <EntitySet Name="typeInfo" EntityType="DonateModel.typeInfo" />
           <EntitySet Name="user" EntityType="DonateModel.user" />
           <AssociationSet Name="objFK" Association="DonateModel.objFK">
@@ -164,8 +177,16 @@
             <End Role="role" EntitySet="role" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
-          <EntitySet Name="systemInfo" EntityType="DonateModel.systemInfo" />
         </EntityContainer>
+        <EntityType Name="Authentication">
+          <Key>
+            <PropertyRef Name="id_num" />
+          </Key>
+          <Property Name="id_num" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="uid" Type="Int32" />
+        </EntityType>
         <EntityType Name="donation">
           <Key>
             <PropertyRef Name="id" />
@@ -206,9 +227,24 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="user" Relationship="DonateModel.rolFK" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="systemInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cache" Type="Double" />
+          <Property Name="max_file_size" Type="Double" />
+          <Property Name="file_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="keywords" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="copyright" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="typeInfo">
           <Key>
@@ -234,6 +270,7 @@
           <Property Name="lastDate" Type="DateTime" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="lastIp" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="isAut" Type="Int32" />
           <NavigationProperty Name="role1" Relationship="DonateModel.rolFK" FromRole="user" ToRole="role" />
         </EntityType>
         <Association Name="objFK">
@@ -272,27 +309,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="systemInfo">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cache" Type="Double" />
-          <Property Name="max_file_size" Type="Double" />
-          <Property Name="file_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="keywords" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="copyright" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DonateModelStoreContainer" CdmEntityContainer="DonateEntities">
+          <EntitySetMapping Name="Authentication">
+            <EntityTypeMapping TypeName="DonateModel.Authentication">
+              <MappingFragment StoreEntitySet="Authentication">
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_num" ColumnName="id_num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="donation">
             <EntityTypeMapping TypeName="DonateModel.donation">
               <MappingFragment StoreEntitySet="donation">
@@ -337,32 +369,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="typeInfo">
-            <EntityTypeMapping TypeName="DonateModel.typeInfo">
-              <MappingFragment StoreEntitySet="typeInfo">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="DonateModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="lastIp" ColumnName="lastIp" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="lastDate" ColumnName="lastDate" />
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-                <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="nick" ColumnName="nick" />
-                <ScalarProperty Name="uid" ColumnName="uid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="systemInfo">
             <EntityTypeMapping TypeName="DonateModel.systemInfo">
               <MappingFragment StoreEntitySet="systemInfo">
@@ -376,6 +382,33 @@
                 <ScalarProperty Name="domain" ColumnName="domain" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typeInfo">
+            <EntityTypeMapping TypeName="DonateModel.typeInfo">
+              <MappingFragment StoreEntitySet="typeInfo">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="DonateModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="isAut" ColumnName="isAut" />
+                <ScalarProperty Name="lastIp" ColumnName="lastIp" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastDate" ColumnName="lastDate" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="nick" ColumnName="nick" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -419,6 +419,9 @@
     <Compile Include="admin\userM\User.aspx.designer.cs">
       <DependentUpon>User.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Authentication.cs">
+      <DependentUpon>DonateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DonateModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -508,6 +511,7 @@
     <Compile Include="users\setting\Password.aspx.designer.cs">
       <DependentUpon>Password.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ZhenziSmsClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="layuiadmin\layui\css\modules\layim\html\getmsg.json" />
