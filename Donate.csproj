@@ -113,9 +113,12 @@
     <Content Include="img\head\user.png" />
     <Content Include="img\head\xb.jpg" />
     <Content Include="img\head\zhuaoyu.jpg" />
+    <Content Include="img\mm_facetoface_collect_qrcode_1590732159711.png" />
     <Content Include="img\save.png" />
     <Content Include="index.aspx" />
     <Content Include="layuiadmin\config.js" />
+    <Content Include="layuiadmin\countdown.js" />
+    <Content Include="layuiadmin\jquery-2.1.1.min.js" />
     <Content Include="layuiadmin\json\console\prograss.js" />
     <Content Include="layuiadmin\json\console\top-card.js" />
     <Content Include="layuiadmin\json\console\top-search.js" />
@@ -466,6 +469,13 @@
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="role.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
@@ -484,6 +494,13 @@
     </Compile>
     <Compile Include="users\Authentication.aspx.designer.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="users\Donate.aspx.cs">
+      <DependentUpon>Donate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\Donate.aspx.designer.cs">
+      <DependentUpon>Donate.aspx</DependentUpon>
     </Compile>
     <Compile Include="users\Publicity.aspx.cs">
       <DependentUpon>Publicity.aspx</DependentUpon>
@@ -522,7 +539,9 @@
     <Content Include="files\download\20200525V2.xls" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <Content Include="Register.aspx" />
     <Content Include="users\Authentication.aspx" />
+    <Content Include="users\Donate.aspx" />
     <Content Include="users\Publicity.aspx" />
     <Content Include="users\setting\Inform.aspx" />
     <Content Include="users\setting\Password.aspx" />
