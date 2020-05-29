@@ -33,7 +33,7 @@
        <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
             <div class="layadmin-user-login-main">
                 <div class="layadmin-user-login-box layadmin-user-login-header">
-                    <h2>
+                    <h2 lang="zh-cn" class="layadmin-user-login-codeimg">
                         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></h2>
                     <p>
                         <asp:Label ID="Label1" runat="server" Text="统一身份认证"></asp:Label>
