@@ -14,7 +14,7 @@
     <AssemblyName>Donate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44335</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -75,6 +75,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebValidates">
+      <HintPath>..\..\game2\实验5用到的第三方控件资源\WebValidates.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\donationM\objectTab\Add.aspx" />
@@ -475,6 +478,20 @@
     <Compile Include="user.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="users\Authentication.aspx.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\Authentication.aspx.designer.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="users\Publicity.aspx.cs">
+      <DependentUpon>Publicity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users\Publicity.aspx.designer.cs">
+      <DependentUpon>Publicity.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="layuiadmin\layui\css\modules\layim\html\getmsg.json" />
@@ -490,8 +507,10 @@
     </Content>
     <Content Include="files\download\20200525V2.xls" />
     <None Include="packages.config" />
-    <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <Content Include="users\Authentication.aspx" />
+    <Content Include="users\Publicity.aspx" />
+    <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -503,8 +522,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Browsers\" />
     <Folder Include="files\upload\" />
-    <Folder Include="user\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
