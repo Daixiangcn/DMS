@@ -22,7 +22,13 @@ namespace Donate.users
             int role = Convert.ToInt32(Session["role"]);
             string phoneNumber = Session["phoneNumber"].ToString();
             var query = from item in db.Authentication where item.phoneNumber == phoneNumber select item;
-            if (query.First().uid != null) {
+            if (query.Count() == 0)
+            {
+                Response.Write("认证数据库中没有您的信息！");
+                this.authCard.Style.Value = "display:none";
+            }
+            else if (query.First().uid != null)
+            {
                 Response.Write("您已认证！");
                 this.authCard.Style.Value = "display:none";
             }
@@ -49,7 +55,7 @@ namespace Donate.users
                 // 将uid更新到Auth表中
                 if (inputCode == code)
                 {
-                    Authentication a = db.Authentication.FirstOrDefault(b=>b.phoneNumber==phoneNumber);
+                    Authentication a = db.Authentication.FirstOrDefault(b => b.phoneNumber == phoneNumber);
                     a.uid = uid;
                     db.SaveChanges();
                     string str = "恭喜您，认证成功！";
