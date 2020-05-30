@@ -25,9 +25,8 @@
                                     <EditItemTemplate>
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">我的角色</label>
-                                            <div class="layui-input-inline">
-                                                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("role") %>'>
-                                                </asp:DropDownList>
+                                            <div class="layui-input-block" style="line-height: 38px">
+                                                <asp:Label ID="roleLabel" runat="server" Text='<%# RoleName(Eval("role")) %>' />
                                             </div>
                                             <%--<div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>--%>
                                         </div>
@@ -139,7 +138,7 @@
                             </div>
                         </div>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT * FROM role"></asp:SqlDataSource>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT *  FROM user WHERE (uid = ?) " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, role = @role, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)">
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DonateConnectionStrings %>" ProviderName="<%$ ConnectionStrings:DonateConnectionStrings.ProviderName %>" SelectCommand="SELECT *  FROM user WHERE (uid = ?) " UpdateCommand="UPDATE `user` SET nick = @nick, gender = @gender, phoneNumber = @phoneNumber, email = @email, imgUrl = @imgUrl, remarks = @remarks WHERE (uid = @uid)">
                             <SelectParameters>
                                 <asp:SessionParameter Name="uid" SessionField="uid" Type="Int32" />
                             </SelectParameters>
