@@ -492,12 +492,12 @@
     <Compile Include="user.cs">
       <DependentUpon>DonateModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="users\Authentication.aspx.cs">
-      <DependentUpon>Authentication.aspx</DependentUpon>
+    <Compile Include="users\Auth.aspx.cs">
+      <DependentUpon>Auth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="users\Authentication.aspx.designer.cs">
-      <DependentUpon>Authentication.aspx</DependentUpon>
+    <Compile Include="users\Auth.aspx.designer.cs">
+      <DependentUpon>Auth.aspx</DependentUpon>
     </Compile>
     <Compile Include="users\Donate.aspx.cs">
       <DependentUpon>Donate.aspx</DependentUpon>
@@ -545,7 +545,7 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <Content Include="Register.aspx" />
-    <Content Include="users\Authentication.aspx" />
+    <Content Include="users\Auth.aspx" />
     <Content Include="users\Donate.aspx" />
     <Content Include="users\Publicity.aspx" />
     <Content Include="users\setting\Inform.aspx" />

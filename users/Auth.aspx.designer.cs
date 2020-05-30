@@ -11,7 +11,7 @@ namespace Donate.users
 {
 
 
-    public partial class Authentication
+    public partial class Auth
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace Donate.users
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// authCard 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl authCard;
 
         /// <summary>
         /// TextBox1 控件。
@@ -105,13 +114,13 @@ namespace Donate.users
         protected global::System.Web.UI.WebControls.TextBox TextBox4;
 
         /// <summary>
-        /// RequiredFieldValidator4 控件。
+        /// Button3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
         /// Button1 控件。

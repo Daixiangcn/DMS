@@ -16,15 +16,16 @@
     <div class="layui-fluid">
         <form id="form1" runat="server">
             <div class="layui-card">
-                <p>您可扫码屏幕下方二维码进行慈善捐款，请在扫码备注里填写捐赠类型。</p>
-                <p>捐赠类型有：助印弘法、赞助本站、寺院建设、佛前供灯、放生护生、慈善会员、定向捐款、慈善捐款、其他捐款。</p>
                 <div class="layui-card-body" style="padding: 15px;">
-                    <div class="layui-form-item">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/img/mm_facetoface_collect_qrcode_1590732159711.png" Width="300px" />
+                    <p>目前，您可通过扫描屏幕下方二维码进行捐助，请在扫码备注里填写捐赠类型。</p>
+                    <p>捐赠类型有：助印弘法、赞助本站、寺院建设、佛前供灯、放生护生、慈善会员、定向捐款、慈善捐款、其他捐款。</p>
+                    <div class="layui-card-body" style="padding: 15px;">
+                        <div class="layui-form-item">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/mm_facetoface_collect_qrcode_1590732159711.png" Width="300px" />
+                        </div>
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
     <script src="/layuiadmin/layui/layui.js"></script>

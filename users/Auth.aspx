@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Authentication.aspx.cs" Inherits="Donate.users.Authentication" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Auth.aspx.cs" Inherits="Donate.users.Auth" %>
 
 <!DOCTYPE html>
 
@@ -21,7 +21,7 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <form id="form1" runat="server" lay-filter="component-form-group">
-                        <div class="layui-card-body" style="padding: 15px;">
+                        <div class="layui-card-body" style="padding: 15px;" id="authCard" runat="server">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">身份证号</label>
                                 <div class="layui-input-inline">
@@ -52,7 +52,7 @@
                                 <div class="layui-input-inline">
                                     <asp:TextBox ID="TextBox4" runat="server" class="layui-input"></asp:TextBox>
                                 </div>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" Display="Dynamic" ErrorMessage="短信验证码不能为空" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:Button ID="Button3" runat="server" Text="获取短信验证码" class="layui-btn" OnClick="Button3_Click" />
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
